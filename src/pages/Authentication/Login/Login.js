@@ -1,104 +1,88 @@
-import React from 'react';
-import { signOut } from 'firebase/auth';
-import auth from '../../../firebase.init';
+import React, { useEffect, useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import Loading from '../../shared/Loading/Loading';
 
-import { useForm } from "react-hook-form";
-import { useAuthState } from 'react-firebase-hooks/auth';
 
+const LogIn = () => {
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
 
-const Login = () => {
-    const [user] = useAuthState(auth);
+    //navigation (1)
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location?.state?.from?.pathname || '/';
+    
 
-    const handleSignOut = () =>{
-        signOut(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    
+    //navigation (2)
+    useEffect (() => {
+      if (user) {
+        navigate(from, { replace: true });
+      }
+    },[user])
+
+    if(loading || sending){
+        return <Loading></Loading>;
     }
-    const {
-        handleSubmit,
-        formState: { errors },
-        trigger,
-        register
-        } = useForm();
-    // const [
-    //     signInWithEmailAndPassword,
-    // ] = useSignInWithEmailAndPassword(auth);
 
-    const onLogin = data =>{
-        signInWithEmailAndPassword(data);
+    //error
+    let errorElement;
+    if (error) {
+        errorElement = <p className='text-red-500'>Error: {error?.message}</p>
     }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+
+        signInWithEmailAndPassword(email, password);
+    }
+
+    const navigateRegister = event => {
+        navigate('/register');
+    }
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            alert('Sent email');
+        }
+        else{
+            alert('please enter your email address');
+        }
+    }
+
+
+
     return (
-        <div>
-            <form onSubmit={handleSubmit(onLogin)}>
-                    <h5>Log In</h5>
-                    <div>
-                        <div>
-                        <label>Your email address</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type= 'email'
-                            required={true}
-                            {...register("email", {
-                            required: "Email is Required!!!" ,
-                            pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "Invalid email address",
-                            }})}
-                            error={Boolean(errors.email)}
-                            onKeyUp={() => {trigger("email")}}
-                        ></input>
-                        {errors.email && (
-                        <small className="text-danger">{errors.email.message}</small>
-                        )}
-                        </div>
-                    <div>
-                        <label>Your password</label>
-                        <input
-                        name='password'
-                        id="password"
-                        type= 'password'
-                        autoComplete='off'
-                        className={`form-control ${errors.password && "invalid"}`}
-                        required={true}
-                        {...register("password", {
-                        required: "You must specify a password",
-                        pattern: {
-                        value: '^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){    1,})(?!.*\s).{8,}$',
-                        message: "Password should contain at least one number and one    special character"
-                        },
-                        minLength: {
-                        value: 8,
-                        message: "Password must be more than 8 characters"
-                        },
-                        maxLength: {
-                        value: 20,
-                        message: "Password must be less than 20 characters"
-                        },
-                        })}
-                        onKeyUp={() => {trigger("password")}}
-                        error={Boolean(errors.password)}
-                        ></input>
-                        {errors.password && (
-                        <small className="text-danger">{errors.password.message}</small>
-                        )}
-                    </div>
-                    <div>
-                        <button>Login</button>
-                    </div>
-                    </div>
-                    </form>
-                <p>
-                    {
-                        user ?
-                            <button className='bg-teal-500' onClick={handleSignOut}>sign out</button>
-                        :
-                        
-                        <p className='bg-violet-500'>Not Logged in</p>
-                    }
-                </p>
+        <div className='pt-32 text-center'>
+            <h2 className='text-4xl md:text-6xl text-center font-semibold
+            text-white mt-2 mb-9'>Please <span className='text-blue-500 font-bold'>LogIn</span> </h2>
+            <div className='formContainer'>
+            <form onSubmit={handleSubmit}>
+                <input className='mb-5' ref={emailRef} type="email" name="email" placeholder='Enter Your Email'/>
+                <br />
+                <input ref={passwordRef} type="password" name="password" placeholder='Enter Your Password'/>
+                <br />
+                <input className='submitBtn' type="submit" value="Log In" />
+            </form>
+            {errorElement}
+            <p className='font-thin mt-3'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-normal underline' onClick={navigateRegister}>Please Register</Link> </p>
+            <p className='font-thin mt-1'>Forget Password? <Link className='text-red-400 font-normal underline' onClick={resetPassword}>Reset Password</Link> </p>
+            </div>
         </div>
     );
 };
 
-export default Login;
+export default LogIn;

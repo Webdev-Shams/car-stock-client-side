@@ -1,146 +1,66 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import React, { useRef } from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../../shared/Loading/Loading';
 
 
 const SignUp = () => {
-    // const { register, handleSubmit } = useForm();
-
-    // const [
-    //     createUserWithEmailAndPassword,
-    //     user,
-    //     loading,
-    //     error,
-    // ] = useCreateUserWithEmailAndPassword (auth);
-
-    // const onSubmit = async (data) => {
-    //     await createUserWithEmailAndPassword (Object.values(data));
-    //     console.log(createUserWithEmailAndPassword);
-    // };
-
-    const {
-        handleSubmit,
-        formState: { errors },
-        trigger,
-        register,
-        watch
-        } = useForm();
+    const emailRef = useRef('');
+    const passwordRef = useRef('');    
     
+    const [
+        createUserWithEmailAndPassword,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    // , {sendEmailVerification: true}
 
-        async function onhandleSubmit(data) {
-            //console.log(data)
-               try {
-               await createUserWithEmailAndPassword(
-               auth, data.email, data.password, data.name)
-               alert ("User Created Successfully")
-               } catch (error) {
-               console.log(error)
-               alert ("User created failed")
-               alert(error);
-             }
-           }
+    const navigate = useNavigate();
+    const navigateLogin = () => {
+        navigate('/login');
+    }
+
+    if(loading){
+        return <Loading></Loading>;
+    }
+
+    let errorElement;
+    if (error) {
+        errorElement = <p className='text-red-500'>Error: {error?.message}</p>
+    }
+
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+
+        await createUserWithEmailAndPassword(email, password);
+        navigate('/home');
+    }
+
+
     return (
-        <div>
-                <form onSubmit={handleSubmit(onhandleSubmit)}>
-                    <h5>Create an account</h5>
-                    <div>
-                        <div>
-                        <label>Your email address</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type= 'email'
-                            required={true}
-                            {...register("email", {
-                            required: "Email is Required!!!" ,
-                            pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "Invalid email address",
-                            }})}
-                            error={Boolean(errors.email)}
-                            onKeyUp={() => {trigger("email")}}
-                        ></input>
-                        {errors.email && (
-                        <small className="text-danger">{errors.email.message}</small>
-                        )}
-                        </div>
-                    <div>
-                        <label>Your password</label>
-                        <input
-                        name='password'
-                        id="password"
-                        type= 'password'
-                        autoComplete='off'
-                        className={`form-control ${errors.password && "invalid"}`}
-                        required={true}
-                        {...register("password", {
-                        required: "You must specify a password",
-                        pattern: {
-                        value: '^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){    1,})(?!.*\s).{8,}$',
-                        message: "Password should contain at least one number and one    special character"
-                        },
-                        minLength: {
-                        value: 8,
-                        message: "Password must be more than 8 characters"
-                        },
-                        maxLength: {
-                        value: 20,
-                        message: "Password must be less than 20 characters"
-                        },
-                        })}
-                        onKeyUp={() => {trigger("password")}}
-                        error={Boolean(errors.password)}
-                        ></input>
-                        {errors.password && (
-                        <small className="text-danger">{errors.password.message}</small>
-                        )}
-                    </div>
-                    <div>
-                        <label>Confirm your password</label>
-                        <input
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        type='password'
-                        {...register( 'confirmPassword', {
-                        validate: value =>
-                        value === watch("password", "") || "The passwords do not match"
-                        })}
-                        autoComplete='off'
-                        onPaste={(e) =>{
-                        e.preventDefault();
-                        return false
-                        }}
-                        error={Boolean(errors.confirmPassword)}
-                        className={`form-control ${errors.confirmPassword && "invalid"}`}
-                        required={true}
-                        onKeyUp={() => {trigger("confirmPassowrd")}}
-                        />
-                        {errors.confirmPassword && (
-                        <small className="text-danger">{errors.confirmPassword.message}    </small>
-                        )}
-                    </div>
-                    <div>
-                        <label>Your full name</label>
-                        <input
-                        name='name'
-                        type="name"
-                        className={`form-control ${errors.name && "invalid"}`}
-                        required={true}
-                        defaultValue=""
-                        {...register("name", { required: "Fullname is Required!!!" })}
-                        onKeyUp={() => {trigger("name")}}/>
-                        {errors.name && (
-                        <small className="text-danger">Fullname is Required!!!</small>
-                        )}
-                        </div>
-                        <div>
-                        <button>Create an account</button>
-                        </div>
-                    </div>
-                    </form>
-
+        <div className='grid grid-cols-1 place-items-center text-center h-full'>
+            <div>
+            <h2 className='text-4xl md:text-6xl text-center font-semibold
+            text-white mt-2 mb-9'>Please <span className='text-blue-500 font-bold'>SignUp</span> </h2>
+            <div className='formContainer'>
+            <form onSubmit={handleRegister}>
+                <input className='mb-4' type="text" name="name" placeholder='Enter Your Name' required/>
+                <br />
+                <input ref={emailRef} className='mb-4' type="email" name="email" placeholder='Enter Your Email' required/>
+                <br />
+                <input ref={passwordRef} className='mb-3' type="password" name="password" placeholder='Enter Your Password' required/>
+                <br />
+                <input className='submitBtn' type="submit" value="Sign Up" />
+            </form>
+            {errorElement}
+            <p className='font-thin mt-3'>Already have an account? <Link to="/login" className='text-blue-500 font-normal underline' onClick={navigateLogin}>Please Login</Link> </p>
+            </div>
+            </div>
+            
+            
         </div>
     );
 };
