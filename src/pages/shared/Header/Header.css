@@ -1,0 +1,9 @@
+.logoName {
+    font-family: 'Satisfy', cursive;
+}
+
+.signUpButton {
+    background-color: rgb(45, 125, 253);
+    padding: 10px 20px;
+    border-radius: 7px;
+}

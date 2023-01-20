@@ -1,0 +1,25 @@
+.brands {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.brands img {
+    max-width: 100px;
+}
+
+.brands h1 {
+    color: #2D7DFD;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .brands img {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 640px) {
+    .brands img {
+        max-width: 50px;
+    }
+}

@@ -5,14 +5,14 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Blog from './pages/Blog/Blog';
 import ManageInventory from './pages/ManageInventory/ManageInventory';
-import About from './pages/About/About';
+import About from './pages/Home/About/About';
 import Header from './pages/shared/Header/Header';
+import Footer from './pages/shared/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
-
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
@@ -22,6 +22,11 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
       </Routes>
+
+      <div className='footer'>
+      <Footer></Footer>
+      </div>
+      
     </div>
   );
 }

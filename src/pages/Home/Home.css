@@ -1,0 +1,9 @@
+.home {
+    background-image: url('../../images/peakpx.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Satisfy', cursive;
+}

@@ -66,20 +66,21 @@ const LogIn = () => {
 
 
     return (
-        <div className='pt-32 text-center'>
-            <h2 className='text-4xl md:text-6xl text-center font-semibold
-            text-white mt-2 mb-9'>Please <span className='text-blue-500 font-bold'>LogIn</span> </h2>
-            <div className='formContainer'>
-            <form onSubmit={handleSubmit}>
-                <input className='mb-5' ref={emailRef} type="email" name="email" placeholder='Enter Your Email'/>
-                <br />
-                <input ref={passwordRef} type="password" name="password" placeholder='Enter Your Password'/>
-                <br />
-                <input className='submitBtn' type="submit" value="Log In" />
-            </form>
-            {errorElement}
-            <p className='font-thin mt-3'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-normal underline' onClick={navigateRegister}>Please Register</Link> </p>
-            <p className='font-thin mt-1'>Forget Password? <Link className='text-red-400 font-normal underline' onClick={resetPassword}>Reset Password</Link> </p>
+        <div className='grid place-items-center h-screen bg-blue-800 text-center'>
+            <div>
+                <h2 className='text-4xl md:text-6xl font-semibold text-white mt-2 mb-9'>Please <span className='text-blue-500 font-bold'>LogIn</span> </h2>
+                <div className='formContainer'>
+                <form onSubmit={handleSubmit}>
+                    <input className='mb-5' ref={emailRef} type="email" name="email" placeholder='Enter Your Email'/>
+                    <br />
+                    <input ref={passwordRef} type="password" name="password" placeholder='Enter Your Password'/>
+                    <br />
+                    <input className='submitBtn' type="submit" value="Log In" />
+                </form>
+                {errorElement}
+                <p className='font-thin mt-3'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-normal underline' onClick={navigateRegister}>Please Register</Link> </p>
+                <p className='font-thin mt-1'>Forget Password? <Link className='text-red-400 font-normal underline' onClick={resetPassword}>Reset Password</Link> </p>
+                </div>
             </div>
         </div>
     );
