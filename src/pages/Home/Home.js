@@ -3,6 +3,7 @@ import About from './About/About';
 import Loading from '../shared/Loading/Loading';
 import './Home.css';
 import Brands from './Brands/Brands';
+import Cars from './Cars/Cars';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
                 </div>
             </div> 
             <About></About>   
+            <Cars></Cars>
             <Brands></Brands>
         </div>    
     );

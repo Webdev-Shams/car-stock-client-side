@@ -8,6 +8,7 @@ import ManageInventory from './pages/ManageInventory/ManageInventory';
 import About from './pages/Home/About/About';
 import Header from './pages/shared/Header/Header';
 import Footer from './pages/shared/Footer/Footer';
+import AddCar from './AddCar/AddCar';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
+        <Route path='/addcar' element={<AddCar></AddCar>}></Route>
       </Routes>
 
       <div className='footer'>

@@ -1,0 +1,13 @@
+.carsCont {
+    padding: 5% 10%;
+    background-color: rgb(34, 34, 34);
+    background-image: url(https://free4kwallpapers.com/uploads/originals/2021/03/02/street-ronin-wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.carsCont h1 {
+    color: #2D7DFD;
+    font-weight: 700;
+}

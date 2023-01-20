@@ -3,7 +3,7 @@ import './Brands.css';
 
 const Brands = () => {
     return (
-        <div className='brands mt-24'>
+        <div className='brands'>
             <h1 className='text-4xl mb-4'>Brands</h1>
             <div className='grid grid-cols-3 md:grid-cols-4 gap-4 place-items-center'>
                 <img src="https://png.monster/wp-content/uploads/2022/02/png.monster-758-370x370.png" alt="porche" />

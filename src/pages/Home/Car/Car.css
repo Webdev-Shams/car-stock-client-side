@@ -1,0 +1,23 @@
+.car {
+    border-radius: 10px;
+    padding-bottom: 10px;
+    color: white;
+    box-shadow: 5px 5px 15px #131313;
+}
+
+.car img {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+
+.mngBtn {
+    background-color: #2D7DFD;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 7px;
+    width: 100%;
+}
+
+.mngBtn:hover {
+    background-color: #08429f;
+}
