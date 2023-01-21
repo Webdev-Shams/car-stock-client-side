@@ -16,6 +16,7 @@ const AddCar = () => {
         .then(res=>res.json())
         .then(result=>console.log(result))
         
+        alert('New Car Added!');
         reset();
     };
     return (

@@ -17,7 +17,7 @@ const Car = ({car}) => {
                 <p>Model: <span className='uppercase'>{model}</span></p>
                 <p>Price: ${price}</p>
                 <p>Quantity: {quantity}</p>
-                <button onClick={() => navigateToServiceDetail(_id)} className='mngBtn'> Manage </button>
+                <button onClick={() => navigateToServiceDetail(_id)} className='mngBtn'> Update </button>
             </div>
         </div>
     );
