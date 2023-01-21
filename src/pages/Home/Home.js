@@ -1,9 +1,9 @@
 import React from 'react';
 import About from './About/About';
-import Loading from '../shared/Loading/Loading';
 import './Home.css';
 import Brands from './Brands/Brands';
-import Cars from './Cars/Cars';
+import Cars from '../Cars/Cars';
+import HomeCars from './HomeCars/HomeCars';
 
 const Home = () => {
     return (
@@ -16,8 +16,8 @@ const Home = () => {
                     </h1>
                 </div>
             </div> 
-            <About></About>   
-            <Cars></Cars>
+            <About></About>  
+            <HomeCars></HomeCars> 
             <Brands></Brands>
         </div>    
     );

@@ -9,6 +9,7 @@ import About from './pages/Home/About/About';
 import Header from './pages/shared/Header/Header';
 import Footer from './pages/shared/Footer/Footer';
 import AddCar from './AddCar/AddCar';
+import CarStock from './pages/CarStock/CarStock';
 
 function App() {
   return (
@@ -21,10 +22,10 @@ function App() {
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
-        <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
+        <Route path='/manage' element={<ManageInventory></ManageInventory>}></Route>
         <Route path='/addcar' element={<AddCar></AddCar>}></Route>
+      <Route path='/car/:carId' element={<CarStock></CarStock>}></Route>
       </Routes>
-
       <div className='footer'>
       <Footer></Footer>
       </div>

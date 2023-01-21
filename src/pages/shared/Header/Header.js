@@ -33,8 +33,8 @@ const Header = () => {
 
                 <ul className='hidden lg:flex gap-8 p-6 uppercase'>
                     <li><NavLink to="/home">Home</NavLink></li>
-                    <li><NavLink to="/gallery">Gallery</NavLink></li>
-                    <li><NavLink to="/about">About Dev</NavLink></li>
+                    <li><NavLink to="/addcar">Add New</NavLink></li>
+                    <li><NavLink to="/manage">Manage</NavLink></li>
                     <li><NavLink to="/blogs">Blogs</NavLink></li>
                     {
                         user ?
@@ -57,8 +57,8 @@ const Header = () => {
                 <ul className={on ? 'flex flex-col items-center fixed inset-0 left-1/4 uppercase bg-black/40 backdrop-blur-lg gap-8 justify-center lg:hidden pt-5 text-2xl' : 'hidden'} style={{ zIndex: '1000' }}>
                     <BiXCircle onClick={showMenu} className='cursor-pointer text-4xl'/>
                     <li><NavLink to="/home">Home</NavLink></li>
-                    <li><NavLink to="/gallery">Gallery</NavLink></li>
-                    <li><NavLink to="/about">About Dev</NavLink></li>
+                    <li><NavLink to="/addcar">Add New</NavLink></li>
+                    <li><NavLink to="/manage">Manage</NavLink></li>                    <li><NavLink to="/blog">Blog</NavLink></li>
                     {
                         user ?
                             <button className='btn btn-NavLink text-white text-decoration-none' onClick={handleSignOut}>SIGN OUT</button>

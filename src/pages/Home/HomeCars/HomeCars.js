@@ -1,9 +1,8 @@
 import React from 'react';
 import useCar from '../../../hooks/useCar';
-import Car from '../Car/Car';
-import './Cars.css';
+import Car from '../../Car/Car';
 
-const Cars = () => {
+const HomeCars = () => {
     const [cars] = useCar();
     return (
         <div className='carsCont'>
@@ -11,7 +10,7 @@ const Cars = () => {
                 <h1 className='text-4xl mb-9'> Cars Available </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {
-                    cars.map(car => <Car
+                    cars.slice(0, 6).map(car => <Car
                         key={car._id}
                         car={car}
                     >
@@ -23,4 +22,4 @@ const Cars = () => {
     );
 };
 
-export default Cars;
+export default HomeCars;
