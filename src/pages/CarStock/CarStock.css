@@ -1,0 +1,14 @@
+.carStockbg {
+    background-image: url('https://r4.wallpaperflare.com/wallpaper/128/540/19/khyzyl-saleem-car-nissan-gt-r-futuristic-wallpaper-5da182def5ecfc0922ccdb4de21bcd35.jpg');
+}
+
+.stockFormInput {
+    background: none;
+    border: 0.5px solid white;
+    padding-left: 10px;
+}
+
+.carStockCont {
+    background-color: rgba(0, 5, 29, 0.484);
+
+}
