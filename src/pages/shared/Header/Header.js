@@ -54,11 +54,12 @@ const Header = () => {
 
                 <FiGrid onClick={showMenu} className={on ? 'hidden': 'absolute right-16 lg:hidden top-3 text-3xl cursor-pointer'}/>
                 
-                <ul className={on ? 'flex flex-col items-center fixed inset-0 left-1/4 uppercase bg-black/40 backdrop-blur-lg gap-8 justify-center lg:hidden pt-5 text-2xl' : 'hidden'} style={{ zIndex: '1000' }}>
+                <ul className={on ? 'flex flex-col items-center fixed inset-0 left-1/4 uppercase text-white bg-black/40 backdrop-blur-lg gap-8 justify-center lg:hidden pt-5 text-2xl' : 'hidden'} style={{ zIndex: '1000' }}>
                     <BiXCircle onClick={showMenu} className='cursor-pointer text-4xl'/>
                     <li><NavLink to="/home">Home</NavLink></li>
                     <li><NavLink to="/addcar">Add New</NavLink></li>
-                    <li><NavLink to="/manage">Manage</NavLink></li>                    <li><NavLink to="/blog">Blog</NavLink></li>
+                    <li><NavLink to="/manage">Manage</NavLink></li>                    
+                    <li><NavLink to="/blog">Blog</NavLink></li>
                     {
                         user ?
                             <button className='btn btn-NavLink text-white text-decoration-none' onClick={handleSignOut}>SIGN OUT</button>
