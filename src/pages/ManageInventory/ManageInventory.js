@@ -24,12 +24,12 @@ const ManageInventory = () => {
             <div className='w-5/6'>
                 <h1 className='text-4xl text-blue-500 font-bold mb-6'>Manage Cars</h1>
                 <div className='mngCarsBg backdrop-blur-lg'>
-                    <table className='border-2 border-black text-white font-semibold'>
+                    <table className='border-2 border-white text-white font-semibold'>
                         <thead>
-                            <tr className='bg-blue-500 border-2 border-black'>
-                                <th className='border-2 border-black'>Company</th>
-                                <th className='border-2 border-black'>Model</th>
-                                <th className='border-2 border-black'>Delete</th>
+                            <tr className='bg-blue-500 border-2 border-white'>
+                                <th className='border-2 border-white py-2'>Company</th>
+                                <th className='border-2 border-white'>Model</th>
+                                <th className='border-2 border-white'>Delete</th>
                             </tr>
                         </thead>
                         <tbody>

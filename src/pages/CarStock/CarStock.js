@@ -6,33 +6,61 @@ import './CarStock.css';
 const CarStock = () => {
     const { carId } = useParams();
     const [car, setCar] = useState({});
+    const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
         const url = `http://localhost:5000/car/${carId}`;
-
         fetch(url)
         .then(res=>res.json())
         .then(data=>setCar(data));
     } ,[]);
 
+    const decreaseStock = car.quantity - 1;
+    console.log(decreaseStock)
+
     
-    const handleDeliver = async (qnt) => {
-        const decrease = qnt - 1;
-        // update the quantity in the MongoDB database
-        const url = `http://localhost:5000/car/${carId}`;
-        const updatedData = {...car, quantity:decrease}
-        await fetch(url, {
+    const handleDeliver =  () => {
+        if(car.quantity > 0) {
+            const url = `http://localhost:5000/update/${carId}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify({quantity:decreaseStock})
+            })
+            .then(res=>res.json())
+            .then(result=>console.log(result))
+
+
+            setCar({...car, quantity: decreaseStock});
+            }
+
+            else{
+                alert('Sorry! Out of Stock!');
+            }
+    };
+
+
+    const onAddStock = (data) => {
+        const add = parseInt(data.quantity) + parseInt(car.quantity);
+
+        const url = `http://localhost:5000/update/${carId}`;
+        fetch(url, {
             method: 'PUT',
             headers: {
                 'content-type' : 'application/json'
             },
-            body: JSON.stringify(updatedData)
-        });
-        // update the state
-        setCar({...car, quantity: decrease});
-    }
-   
-   
+            body: JSON.stringify({quantity:add})
+        })
+        .then(res=>res.json())
+        .then(result=>console.log(result))
+
+
+        setCar({...car, quantity:add});
+        reset();
+    };
+
 
     return (
         <div className='grid place-items-center min-h-screen py-11'>
@@ -44,7 +72,13 @@ const CarStock = () => {
                     <p><span className='font-semibold'>Price:</span> {car.price}</p>
                     <p><span className='font-semibold'>Quantity:</span> {car.quantity}</p>
 
-                    <button className='bg-red-500 px-11 py-6 rounded-lg' onClick={() => handleDeliver(car.quantity)}>Delivered</button>
+                    <div className='grid grid-cols-3 gap-4'>
+                        <button className='bg-red-500 my-2 mr-11 rounded-md col-span-1 text-white' onClick={handleDeliver}>Delivered</button>
+                        <form className='col-span-2' onSubmit={handleSubmit(onAddStock)}>
+                            <input className='mb-4' placeholder={car.quantity} type="number" {...register("quantity")} />
+                            <input className='bg-teal-500 py-2 px-6 rounded-md text-white' type="submit" value="Add Stock" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
