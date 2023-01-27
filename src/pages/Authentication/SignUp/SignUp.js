@@ -3,6 +3,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
+import './SignUp.css'
 
 
 const SignUp = () => {
@@ -41,10 +42,9 @@ const SignUp = () => {
 
 
     return (
-        <div className='grid grid-cols-1 place-items-center text-center h-full'>
-            <div>
-            <h2 className='text-4xl md:text-6xl text-center font-semibold
-            text-white mt-2 mb-9'>Please <span className='text-blue-500 font-bold'>SignUp</span> </h2>
+        <div className='signUpCont grid place-items-center h-screen text-center'>
+            <div className='backdrop-blur-lg py-9 px-6 rounded-lg'>
+            <h2 className='text-4xl font-bold text-blue-500 mt-2 mb-9 drop-shadow-[2px_2px_2px_rgba(0,0,0,1)]'>Please SignUp </h2>
             <div className='formContainer'>
             <form onSubmit={handleRegister}>
                 <input className='mb-4' type="text" name="name" placeholder='Enter Your Name' required/>
@@ -53,10 +53,10 @@ const SignUp = () => {
                 <br />
                 <input ref={passwordRef} className='mb-3' type="password" name="password" placeholder='Enter Your Password' required/>
                 <br />
-                <input className='submitBtn' type="submit" value="Sign Up" />
+                <button className='signUpBtn' type="submit"> Sign up</button>
             </form>
             {errorElement}
-            <p className='font-thin mt-3'>Already have an account? <Link to="/login" className='text-blue-500 font-normal underline' onClick={navigateLogin}>Please Login</Link> </p>
+            <p className='font-normal mt-3'>Already have an account? <Link to="/login" className='text-blue-500 font-semibold underline drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]' onClick={navigateLogin}>Please Login</Link> </p>
             </div>
             </div>
             

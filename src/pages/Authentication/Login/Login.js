@@ -3,6 +3,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
+import './Login.css';
 
 
 const LogIn = () => {
@@ -66,20 +67,20 @@ const LogIn = () => {
 
 
     return (
-        <div className='grid place-items-center h-screen bg-blue-800 text-center'>
-            <div>
-                <h2 className='text-4xl md:text-6xl font-semibold text-white mt-2 mb-9'>Please <span className='text-blue-500 font-bold'>LogIn</span> </h2>
+        <div className='loginCont grid place-items-center h-screen text-center'>
+            <div className='backdrop-blur-lg py-9 px-6 rounded-lg'>
+                <h2 className='text-4xl font-bold text-blue-500 mt-2 mb-9 drop-shadow-[2px_2px_2px_rgba(0,0,0,1)]'>Please LogIn</h2>
                 <div className='formContainer'>
                 <form onSubmit={handleSubmit}>
-                    <input className='mb-5' ref={emailRef} type="email" name="email" placeholder='Enter Your Email'/>
+                    <input className='w-full mb-6' ref={emailRef} type="email" name="email" placeholder='Enter Your Email'/>
                     <br />
-                    <input ref={passwordRef} type="password" name="password" placeholder='Enter Your Password'/>
+                    <input className='w-full' ref={passwordRef} type="password" name="password" placeholder='Enter Your Password'/>
                     <br />
-                    <input className='submitBtn' type="submit" value="Log In" />
+                    <button className='submitBtn cursor-pointer' type="submit" >Login</button>
                 </form>
                 {errorElement}
-                <p className='font-thin mt-3'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-normal underline' onClick={navigateRegister}>Please Register</Link> </p>
-                <p className='font-thin mt-1'>Forget Password? <Link className='text-red-400 font-normal underline' onClick={resetPassword}>Reset Password</Link> </p>
+                <p className=' mt-3 text-left'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-semibold underline drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]' onClick={navigateRegister}>Please Register</Link> </p>
+                <p className='mt-1 text-left'>Forget Password? <Link className='text-red-500 font-semibold underline drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]' onClick={resetPassword}>Reset Password</Link> </p>
                 </div>
             </div>
         </div>
