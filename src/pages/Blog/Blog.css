@@ -1,0 +1,29 @@
+.blog {
+    background-image: url('http://www.tgsmusclecars.com.au/uploads/1/2/9/2/12921749/classic-car-wallpaper-high-definition-for-desktop-wallpaper_orig.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#blogHeading {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.blogBg {
+    background-color: rgba(7, 0, 66, 0.845);
+}
+
+.blogBg h1 {
+    font-size: 25px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.blogBg p {
+    margin-bottom: 40px;
+    line-height: 1.7;
+    text-align: justify;
+}

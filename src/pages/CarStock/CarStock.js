@@ -59,6 +59,7 @@ const CarStock = () => {
 
         setCar({...car, quantity:add});
         reset();
+        alert('successfully added!');
     };
 
 

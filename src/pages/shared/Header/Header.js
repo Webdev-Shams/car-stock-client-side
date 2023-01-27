@@ -35,7 +35,7 @@ const Header = () => {
                     <li><NavLink to="/home">Home</NavLink></li>
                     <li><NavLink to="/addcar">Add New</NavLink></li>
                     <li><NavLink to="/manage">Manage</NavLink></li>
-                    <li><NavLink to="/blogs">Blogs</NavLink></li>
+                    <li><NavLink to="/blog">Blogs</NavLink></li>
                     {
                         user ?
                             <button className='btn btn-NavLink text-decoration-none' onClick={handleSignOut}>SIGN OUT</button>
