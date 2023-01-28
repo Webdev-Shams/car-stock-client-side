@@ -3,7 +3,7 @@ import './Header.css';
 import { GiCarWheel } from 'react-icons/gi';
 import { FiGrid } from 'react-icons/fi';
 import { BiXCircle } from 'react-icons/bi';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { signOut } from 'firebase/auth';
@@ -23,10 +23,10 @@ const Header = () => {
 
     return (
         <div>
-            <div className='w-full lg:backdrop-blur-sm flex justify-between px-16 lg:px-24 py-3 lg:py-0 items-center border-b border-white'>
+            <div className='headerMenu w-full lg:backdrop-blur-sm flex justify-between px-16 lg:px-24 py-3 lg:py-0 items-center border-b border-white'>
 
             <div className='text-2xl font-bold text-center flex'>
-                <h1 className='logoName lg:text-4xl'>Car Stock</h1>
+                <Link to="/home"><h1 className='logoName lg:text-4xl'>Car Stock</h1></Link>
             </div>
 
             <nav>

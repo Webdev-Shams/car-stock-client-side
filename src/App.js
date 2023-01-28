@@ -11,6 +11,7 @@ import Footer from './pages/shared/Footer/Footer';
 import CarStock from './pages/CarStock/CarStock';
 import AddCar from './pages/AddCar/AddCar';
 import Cars from './pages/Cars/Cars';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/about' element={<About></About>}></Route>

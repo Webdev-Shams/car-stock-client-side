@@ -22,7 +22,7 @@ const ManageInventory = () => {
     return (
         <div className='manageCars bg-black grid h-screen place-items-center'>
             <div className='w-5/6'>
-                <h1 className='text-4xl text-blue-500 font-bold mb-6'>Manage Cars</h1>
+                <h1 className='text-4xl text-blue-500 font-bold mb-6 drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]'>Manage Cars</h1>
                 <div className='mngCarsBg backdrop-blur-lg'>
                     <table className='border-2 border-white text-white font-semibold'>
                         <thead>
