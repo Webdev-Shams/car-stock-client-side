@@ -1,7 +1,7 @@
 table,
 th,
 td {
-    border: 1px solid;
+    border: 1px solid #2d7dfd;
 }
 
 table {
@@ -9,7 +9,6 @@ table {
 }
 
 .manageCars {
-    /* background-image: url('https://images.unsplash.com/photo-1576933765009-9f57f43910aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'); */
     background-image: url('https://wallpaper.dog/large/20473355.jpg');
     background-repeat: no-repeat;
     background-size: cover;

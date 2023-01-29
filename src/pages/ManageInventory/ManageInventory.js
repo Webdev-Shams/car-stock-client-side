@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useCar from '../../hooks/useCar';
 import './ManageInventory.css';
 
@@ -20,16 +21,16 @@ const ManageInventory = () => {
         }
     }
     return (
-        <div className='manageCars bg-black grid h-screen place-items-center'>
+        <div className='manageCars bg-black grid min-h-screen place-items-center'>
             <div className='w-5/6'>
-                <h1 className='text-4xl text-blue-500 font-bold mb-6 drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]'>Manage Cars</h1>
+                <h1 className='text-4xl text-blue-500 font-bold mt-14 mb-6 drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]'>Manage Cars</h1>
                 <div className='mngCarsBg backdrop-blur-lg'>
-                    <table className='border-2 border-white text-white font-semibold'>
+                    <table className='border-2 border-blue-500 text-white font-semibold'>
                         <thead>
                             <tr className='bg-blue-500 border-2 border-white'>
-                                <th className='border-2 border-white py-2'>Company</th>
-                                <th className='border-2 border-white'>Model</th>
-                                <th className='border-2 border-white'>Delete</th>
+                                <th className='border-2 border-blue-500 py-2'>Company</th>
+                                <th className='border-2 border-blue-500'>Model</th>
+                                <th className='border-2 border-blue-500'>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,6 +46,7 @@ const ManageInventory = () => {
                         </tbody>                
                     </table>
                 </div>
+                <Link to="/addcar"><p className='bg-white hover:bg-teal-200 text-blue-500 hover:text-blue-700 text-lg border-4 border-blue-500 hover:border-blue-700 py-4 mb-14 font-semibold'>Click Here to Add More Cars</p></Link>
             </div>
          </div>
     );

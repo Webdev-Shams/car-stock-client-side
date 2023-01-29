@@ -70,7 +70,7 @@ const CarStock = () => {
                     <img className='rounded-lg' src={car.img} alt="" />
                     <div className='text-left text-xl capitalize text-white mt-6'>
                         <p><span className='font-semibold'>Model:</span> {car.model}</p>
-                        <p><span className='font-semibold'>Price:</span> {car.price}</p>
+                        <p><span className='font-semibold'>Price: $ </span> {car.price}</p>
                         <p><span className='font-semibold'>Quantity:</span> {car.quantity}</p>
 
                         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>

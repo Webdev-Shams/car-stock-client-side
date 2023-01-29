@@ -1,14 +1,16 @@
 import React, { useRef } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
+import GoogleSignIn from '../Login/GoogleSignIn';
 import './SignUp.css'
 
 
 const SignUp = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');    
+    
     
     const [
         createUserWithEmailAndPassword,
@@ -18,6 +20,9 @@ const SignUp = () => {
     // , {sendEmailVerification: true}
 
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location?.state?.from?.pathname || '/';
+
     const navigateLogin = () => {
         navigate('/login');
     }
@@ -37,7 +42,7 @@ const SignUp = () => {
         const password = passwordRef.current.value;
 
         await createUserWithEmailAndPassword(email, password);
-        navigate('/home');
+        navigate(from, { replace: true });
     }
 
 
@@ -57,6 +62,7 @@ const SignUp = () => {
             </form>
             {errorElement}
             <p className='font-normal mt-3'>Already have an account? <Link to="/login" className='text-blue-500 font-semibold underline drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]' onClick={navigateLogin}>Please Login</Link> </p>
+            <GoogleSignIn></GoogleSignIn>
             </div>
             </div>
             

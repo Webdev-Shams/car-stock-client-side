@@ -3,6 +3,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
+import GoogleSignIn from './GoogleSignIn';
 import './Login.css';
 
 
@@ -10,7 +11,6 @@ const LogIn = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
 
-    //navigation (1)
     const navigate = useNavigate();
     const location = useLocation();
     let from = location?.state?.from?.pathname || '/';
@@ -22,20 +22,18 @@ const LogIn = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
     
-    //navigation (2)
     useEffect (() => {
       if (user) {
         navigate(from, { replace: true });
       }
-    },[user])
+    },[from, navigate, user])
 
-    if(loading || sending){
+    if(loading){
         return <Loading></Loading>;
     }
 
-    //error
     let errorElement;
     if (error) {
         errorElement = <p className='text-red-500'>Error: {error?.message}</p>
@@ -79,9 +77,11 @@ const LogIn = () => {
                     <button className='submitBtn cursor-pointer' type="submit" >Login</button>
                 </form>
                 {errorElement}
-                <p className=' mt-3 text-left'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-semibold underline drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]' onClick={navigateRegister}>Please Register</Link> </p>
-                <p className='mt-1 text-left'>Forget Password? <Link className='text-red-500 font-semibold underline drop-shadow-[1px_1px_0.5px_rgba(0,0,0,1)]' onClick={resetPassword}>Reset Password</Link> </p>
+                <p className=' mt-3 text-left'>New to Genius Car? <Link to="/signup" className='text-blue-500 font-semibold underline drop-shadow-[1px_0.5px_0.5px_rgba(0,0,0,1)]' onClick={navigateRegister}>Please Register</Link> </p>
+                <p className='mt-1 text-left'>Forget Password? <Link className='text-red-500 font-semibold underline drop-shadow-[1px_0.5px_0.5px_rgba(0,0,0,1)]' onClick={resetPassword}>Reset Password</Link> </p>
                 </div>
+
+                <GoogleSignIn></GoogleSignIn>
             </div>
         </div>
     );

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Header.css';
-import { GiCarWheel } from 'react-icons/gi';
 import { FiGrid } from 'react-icons/fi';
 import { BiXCircle } from 'react-icons/bi';
 import { Link, NavLink } from 'react-router-dom';
@@ -33,12 +32,16 @@ const Header = () => {
 
                 <ul className='hidden lg:flex gap-8 p-6 uppercase'>
                     <li><NavLink to="/home">Home</NavLink></li>
-                    <li><NavLink to="/addcar">Add New</NavLink></li>
-                    <li><NavLink to="/manage">Manage</NavLink></li>
+                    <li><NavLink to="/cars">Cars</NavLink></li>
                     <li><NavLink to="/blog">Blogs</NavLink></li>
                     {
                         user ?
-                            <button className='btn btn-NavLink text-decoration-none' onClick={handleSignOut}>SIGN OUT</button>
+                            
+                            <>
+                                <li><NavLink to="/manage">Manage</NavLink></li>
+                                <li><NavLink to="/addcar">Add Cars</NavLink></li>
+                                <li><NavLink className='signOutButton' onClick={handleSignOut}>SIGN OUT</NavLink></li>
+                            </>
                         :
                         <li>
                             <NavLink className='mr-6' to="login">
@@ -57,7 +60,7 @@ const Header = () => {
                 <ul className={on ? 'flex flex-col items-center fixed inset-0 left-1/4 uppercase text-white bg-black/40 backdrop-blur-lg gap-8 justify-center lg:hidden pt-5 text-2xl' : 'hidden'} style={{ zIndex: '1000' }}>
                     <BiXCircle onClick={showMenu} className='cursor-pointer text-4xl'/>
                     <li><NavLink to="/home">Home</NavLink></li>
-                    <li><NavLink to="/addcar">Add New</NavLink></li>
+                    <li><NavLink to="/cars">My Cars</NavLink></li>
                     <li><NavLink to="/manage">Manage</NavLink></li>                    
                     <li><NavLink to="/blog">Blog</NavLink></li>
                     {

@@ -12,6 +12,8 @@ import CarStock from './pages/CarStock/CarStock';
 import AddCar from './pages/AddCar/AddCar';
 import Cars from './pages/Cars/Cars';
 import NotFound from './pages/NotFound/NotFound';
+import RequiredAuth from './pages/Authentication/Login/RequiredAuth';
+
 
 function App() {
   return (
@@ -24,11 +26,15 @@ function App() {
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>  
         <Route path='/cars' element={<Cars></Cars>}></Route>
-        <Route path='/manage' element={<ManageInventory></ManageInventory>}></Route>
-        <Route path='/addcar' element={<AddCar></AddCar>}></Route>
-      <Route path='/car/:carId' element={<CarStock></CarStock>}></Route>
+        
+          <Route path='/manage' element={<RequiredAuth><ManageInventory></ManageInventory></RequiredAuth>}></Route>
+        
+          <Route path='/addcar' element={<RequiredAuth><AddCar></AddCar></RequiredAuth>}></Route>
+        
+          <Route path='/car/:carId' element={<RequiredAuth><CarStock></CarStock></RequiredAuth>}></Route>
+        
       </Routes>
       <div className='footer'>
       <Footer></Footer>
